@@ -7,4 +7,4 @@ endif()
 
 PROJECT(bugrepro VERSION 0.0.1 LANGUAGES C CXX CUDA)
 
-add_library(mycudalib SHARED src/kernel.h src/kernel.cu)
+add_library(mycudalib SHARED src/kernel.cu)

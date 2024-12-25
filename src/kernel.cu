@@ -2,8 +2,6 @@
 #include "device_launch_parameters.h"
 #include <stdio.h>
 
-#include "kernel.h"
-
 __global__ void _gpu_pairwise_mul(long *a, long *b, long *res) {
     int i = threadIdx.x;
     res[i] = a[i] * b[i];
