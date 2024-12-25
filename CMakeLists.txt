@@ -8,7 +8,6 @@ endif()
 PROJECT(bugrepro VERSION 0.0.1 LANGUAGES C CXX CUDA)
 
 #option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(myclib src/myclib.c)
 add_library(mycudalib SHARED src/kernel.h src/kernel.cu)
