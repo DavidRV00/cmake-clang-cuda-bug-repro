@@ -11,12 +11,8 @@ PROJECT(
 )
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.24)
-PROJECT(MySwigInterface)
 
 set(CMAKE_VERBOSE_MAKEFILE on)
-
-FIND_PACKAGE(SWIG REQUIRED)
-INCLUDE(${SWIG_USE_FILE})
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
@@ -29,8 +25,6 @@ add_library(
     ${SOURCES}
 )
 
-set_target_properties(myclib PROPERTIES PUBLIC_HEADER include/myclib.h)
-
 add_library(
     cudalib SHARED
     src/kernel.h src/kernel.cu
@@ -42,7 +36,6 @@ set_target_properties(
 )
 target_link_libraries(myclib cudalib)
 
-target_include_directories(myclib PRIVATE include)
 target_include_directories(myclib PRIVATE src)
 
 set(Python_FIND_VIRTUALENV FIRST)
@@ -54,24 +47,3 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 target_link_libraries(myclib ${PYTHON_LIBRARIES} Python3::NumPy)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-
-SET(CMAKE_SWIG_FLAGS "")
-
-set(SWIG_SOURCE_FILE_EXTENSIONS ".i")
-
-SET_SOURCE_FILES_PROPERTIES(
-    myclib.i
-    PROPERTIES SWIG_FLAGS "-includeall")
-
-SET_SOURCE_FILES_PROPERTIES(
-    myclib.i
-    PROPERTIES SWIG_MODULE_NAME "myclib_python")
-
-SWIG_ADD_LIBRARY(
-    myclib_python
-    TYPE MODULE
-    LANGUAGE python
-    SOURCES myclib.i
-)
-
-SWIG_LINK_LIBRARIES(myclib_python ${PYTHON_LIBRARIES} myclib)
