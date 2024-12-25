@@ -7,9 +7,6 @@ endif()
 
 PROJECT(bugrepro VERSION 0.0.1 LANGUAGES C CXX CUDA)
 
-#option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
-
 add_library(myclib src/myclib.c)
 add_library(mycudalib SHARED src/kernel.h src/kernel.cu)
-#set_target_properties(mycudalib PROPERTIES CUDA_RUNTIME_LIBRARY Shared)
 target_link_libraries(myclib mycudalib)
