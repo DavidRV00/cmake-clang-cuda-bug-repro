@@ -1,6 +1,5 @@
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
-#include <stdio.h>
 
 __global__ void _gpu_pairwise_mul(long *a, long *b, long *res) {
     int i = threadIdx.x;
