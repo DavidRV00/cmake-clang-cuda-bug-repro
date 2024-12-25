@@ -6,7 +6,7 @@ __global__ void _gpu_pairwise_mul(long *a, long *b, long *res) {
     res[i] = a[i] * b[i];
 }
 
-extern "C" void gpu_pairwise_mul(long *a, long *b, long *res, int n_elems) {
+void gpu_pairwise_mul(long *a, long *b, long *res, int n_elems) {
     size_t size = n_elems * sizeof(long);
 
     long *cuda_a = 0;
