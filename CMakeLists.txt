@@ -38,12 +38,4 @@ target_link_libraries(myclib cudalib)
 
 target_include_directories(myclib PRIVATE src)
 
-set(Python_FIND_VIRTUALENV FIRST)
-set(Python_ADDITIONAL_VERSIONS 3.12)
-find_package(Python3 3.12 COMPONENTS Interpreter Development NumPy REQUIRED)
-INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
-
-include_directories(${PYTHON_INCLUDE_DIRS})
-target_link_libraries(myclib ${PYTHON_LIBRARIES} Python3::NumPy)
-
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
